@@ -6,6 +6,9 @@ let inputs;
 let errorElement;
 let loader;
 
+//Función que se ejecuta una vez que se haya lanzado el evento de
+//que el documento se encuentra cargado, es decir, se encuentran todos los
+//elementos HTML presentes.
 document.addEventListener('DOMContentLoaded', function () {
     loginForm = document.forms['login'];
     submitButton = document.querySelector('button[type="submit"]');
@@ -36,27 +39,14 @@ function onSubmit(e) {
 
     if (!hasErrors) {
         loadingOn();
+
         firebase
             .auth()
-            .signInWithEmailAndPassword(emailInput.value, pwdInput.value)
-            .then(() => {
-                loadingOff();
-            })
+            .createUserWithEmailAndPassword(emailInput.value, pwdInput.value)
             .catch(function (error) {
                 loadingOff();
-                console.log(error.code);
 
-                switch (error.code) {
-                    case 'auth/wrong-password':
-                    case 'auth/user-not-found':
-                        showError('Datos incorrectos');
-                        break;
-                    case 'auth/too-many-requests':
-                        showError('Demasiados intentos, intente más tarde');
-                        break;
-                    default:
-                        showError('Error');
-                }
+                showError('Formulario inválido');
             });
     }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+  <script src="js/utils/initFirebase.js"></script>
+  <script src="js/utils/mustBeUnlogged.js"></script>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/sections/login.css">
+</head>
+
+<body class="text-center">
+  <div class="container p-5">
+    <div class="alert alert-danger" id="error-element" role="alert" style="position: relative; top: 0; display:none;">
+      <h4 class="alert-heading"></h4>
+    </div>
+    <form class="signin" name="login">
+      <label>
+        Email
+        <input type="email" name="email" />
+      </label>
+      <label>
+        Contraseña
+        <input type="password" name="password" />
+      </label>
+      <button type="submit">
+        Registrarse
+        <div class="loader">Loading...</div>
+      </button>
+      <br>
+      <a href="login.html">Iniciar sesión</a>
+    </form>
+  </div>
+  <script src="js/init.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html> 
