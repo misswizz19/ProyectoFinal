@@ -7,19 +7,22 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
-let showSpinner = function(){
-  document.getElementById("spinner-wrapper").style.display = "block";
-}
+let loggedText;
+let logoutButton;
 
-let hideSpinner = function(){
-  document.getElementById("spinner-wrapper").style.display = "none";
-}
+let showSpinner = function () {
+    document.getElementById('spinner-wrapper').style.display = 'block';
+};
+
+let hideSpinner = function () {
+  document.getElementById('spinner-wrapper').style.display = 'none';
+};
 
 let getJSONData = function(url){
     let result = {};
     showSpinner();
     return fetch(url)
-    .then(response => {
+    .then((response) => {
       if (response.ok) {
         return response.json();
       }else{
@@ -38,4 +41,30 @@ let getJSONData = function(url){
         hideSpinner();
         return result;
     });
+}
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  loggedText = document.querySelector('.logged-as span');
+  logoutButton = document.querySelector('.logout-button');
+
+  if (loggedText) {
+      const email = sessionStorage.getItem('loggedEmail');
+      firebase.auth().onAuthStateChanged(function (user) {
+          if (user) {
+              loggedText.innerHTML = `Logeado como <i>${user.email}</i>`;
+              logoutButton.addEventListener('click', onClickLogout);
+          }
+      });
+  }
+});
+
+function onClickLogout(e) {
+  e.preventDefault();
+
+  firebase
+      .auth()
+      .signOut()
+      .then(() => {
+          window.location = '.';
+      });
 }
