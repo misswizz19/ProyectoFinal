@@ -6,7 +6,9 @@ let inputs;
 let errorElement;
 let loader;
 
-
+//Función que se ejecuta una vez que se haya lanzado el evento de
+//que el documento se encuentra cargado, es decir, se encuentran todos los
+//elementos HTML presentes.
 document.addEventListener('DOMContentLoaded', function () {
     loginForm = document.forms['login'];
     submitButton = document.querySelector('button[type="submit"]');
@@ -31,7 +33,7 @@ function onSubmit(e) {
             input.style.boxShadow =
                 '0px 0px 2px red, 0px 0px 2px red, 0px 0px 2px red';
         } else {
-            window.location.href = 'index.html';
+            input.style.boxShadow = '';
         }
     }
 }
@@ -41,6 +43,14 @@ function showError(message) {
     errorElement.style.display = 'block';
 }
 
+function loadingOn() {
+    loader.style.opacity = 1;
+    submitButton.style.backgroundColor = '#EEE';
+    submitButton.style.boxShadow = '0px 0px 2px #AAA';
+}
 
-   
-          
+function loadingOff() {
+    loader.style.opacity = 0;
+    submitButton.style.backgroundColor = 'white';
+    submitButton.style.boxShadow = 'none';
+}

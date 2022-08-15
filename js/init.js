@@ -1,5 +1,6 @@
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
+const CATEGORY_INFO_URL = "https:japceibal.github.io/emercado-api/cats_products/101.json";
 const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
 const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
 const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
@@ -19,7 +20,7 @@ let getJSONData = function(url){
     let result = {};
     showSpinner();
     return fetch(url)
-    .then(response => {
+    .then((response) => {
       if (response.ok) {
         return response.json();
       }else{
@@ -39,3 +40,5 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+
