@@ -1,3 +1,6 @@
+
+
+
 let loginForm;
 let submitButton;
 let emailInput;
@@ -5,6 +8,7 @@ let pwdInput;
 let inputs;
 let errorElement;
 let loader;
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -19,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loginForm.addEventListener('submit', onSubmit);
 });
 
+
 function onSubmit(e) {
     e.preventDefault();
     let hasErrors = false;
@@ -31,7 +36,7 @@ function onSubmit(e) {
             input.style.boxShadow =
                 '0px 0px 2px red, 0px 0px 2px red, 0px 0px 2px red';
         } else {
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';
         }
     }
 }

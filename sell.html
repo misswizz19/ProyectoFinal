@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +7,7 @@
   <title>eMercado - Todo lo que busques está aquí</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/dropzone.css" rel="stylesheet">
+  
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
@@ -71,22 +71,22 @@
           </div>
           <div class="row">
             <div class="col-md-3 mb-3">
-              <label for="productCostInput">Costo</label>
+              <label for="productCostInput">Costo del producto</label>
               <input type="number" name="productCostInput" class="form-control" id="productCostInput" placeholder="" required="" value="0"
                 min="0">
               <div class="invalid-feedback">
-                El costo debe ser mayor que 0.
+                El costo tiene que ser mayor que 0.
               </div>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="productCurrency">Moneda</label>
+              <label for="productCurrency">Tipo de moneda</label>
               <select name="productCurrency" class="form-select custom-select d-block w-100" id="productCurrency" required>
                 <option value="" hidden selected>Seleccionar moneda</option>
                 <option>Pesos Uruguayos (UYU)</option>
-                <option>Dólares (USD)</option>
+                <option>Dólares EstadoUnidenses (USD)</option>
               </select>
               <div class="invalid-feedback">
-                Ingresa una categoría válida.
+                Ingresa una categoría que sea válida.
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@
             <div class="col-md-7 mb-3">
               <label for="productCategory">Categoría</label>
               <select name="productCategory" class="custom-select form-select d-block w-100" id="productCategory">
-                <option value="">Elija la categoría...</option>
+                <option value="">Elija una categoría....</option>
                 <option>Autos</option>
                 <option>Juguetes</option>
                 <option>Muebles</option>
@@ -103,7 +103,7 @@
                 <option>Vestimenta</option>
               </select>
               <div class="invalid-feedback">
-                Por favor ingresa una categoría válida.
+                Por favor ingresa una categoría que sea válida.
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@
             <div class="row">
               <button type="button" class="m-1 btn btn-link" data-bs-toggle="modal"
                 data-bs-target="#contidionsModal">Ver
-                condiciones</button>
+                condiciones del producto</button>
             </div>
           </div>
           <hr class="mb-4">

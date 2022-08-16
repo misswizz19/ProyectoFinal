@@ -1,45 +1,54 @@
-function showProductsList(array) {
-    let htmlContentToAppend = '';
-    for (let i = 0; i < array.length; i++) {
-        let product = array[i];
 
+let lista = [];
+
+
+const autos = "https://japceibal.github.io/emercado-api/cats_products/101.json"
+
+
+
+fetch(autos)
+.then(response => {return response.json()})
+.then(data=>{
+
+   
+
+    for(let auto in data.products){
+        lista.push(data.products[auto]);
+
+    }
+
+
+    let htmlContentToAppend="";
+
+    for(let i=0; i<lista.length; i++){
+
+        let products = lista[i];
         htmlContentToAppend += `
+
+       
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
-                    <img src="${product.imgSrc}" class="img-thumbnail">
+                    <img src="${products.image}" class="img-thumbnail">
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">${product.name}</h4>
+                        <h4 class="mb-1">${products.name}</h4>
                         <div>
-                            ${product.currency} ${product.cost}
+                            ${products.currency} ${products.cost}
                             <br/>
                             <small class="text-muted">
-                                ${product.soldCount} vendidos
+                                ${products.soldCount} vendidos
                             </small>
                         </div>
                     </div>
 
-                    ${product.description}
+                    ${products.description}
                 </div>
             </div>
         </div>
         `;
 
-        document.getElementById(
-            'prod-list-container'
-        ).innerHTML = htmlContentToAppend;
+        document.getElementById('prod-list-container').innerHTML = htmlContentToAppend;
     }
-}
-
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//documento se encuentra cargado, osea, se encuentran todos los
-//elementos HTML .
-document.addEventListener('DOMContentLoaded', function (e) {
-    getJSONData(PRODUCTS_URL).then(function (resultObj) {
-        if (resultObj.status === 'ok') {
-            showProductsList(resultObj.data);
-        }
-    });
-});
+})
