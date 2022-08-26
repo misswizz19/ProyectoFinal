@@ -2,13 +2,24 @@
 let lista = [];
 
 
-const autos = "https://japceibal.github.io/emercado-api/cats_products/101.json"
+const NuestraUrlCambiante = localStorage.getItem("Fetchh");
+const ColeccionDeProductos = NuestraUrlCambiante;
 
 
 
-fetch(autos)
+fetch(ColeccionDeProductos)
 .then(response => {return response.json()})
 .then(data=>{
+
+
+    let NombreDeLista="";
+
+    NombreDeLista +=`<h2>${data.catName}</h2>`
+
+
+    document.getElementById("TituloDelArticulo").innerHTML = NombreDeLista;
+
+    console.log(data.catName);
 
    
 

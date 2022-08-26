@@ -1,4 +1,4 @@
-let loginForm;
+/* let loginForm;
 let submitButton;
 let emailInput;
 let pwdInput;
@@ -6,9 +6,7 @@ let inputs;
 let errorElement;
 let loader;
 
-//Función que se ejecuta una vez que se haya inicializado el evento de
-//que el documento esta cargado, osea que se encuentran todos los
-//elementos HTML.
+
 document.addEventListener('DOMContentLoaded', function () {
     loginForm = document.forms['login'];
     submitButton = document.querySelector('button[type="submit"]');
@@ -42,4 +40,4 @@ function showError(message) {
     errorElement.getElementsByTagName('h4')[0].innerHTML = message;
     errorElement.style.display = 'block';
 }
-
+*/
