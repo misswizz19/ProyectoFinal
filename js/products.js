@@ -1,65 +1,105 @@
+let Content;
+let htmlContentToAppend = "";
+let Minimo = undefined;
+let Maximo = undefined;
 
-let lista = [];
+//agrege let = Content para poder filtrar el resultado)
+function traer() {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => { Content = data; return data })
+        .then(data => ViewContent(Content))
+        .catch(error => console.log(error))
+}
+traer();
+
+//filtra minimo a maximo 
+document.getElementById("sortAsc").addEventListener("click", () => {
+    console.log(Content.products.sort(
+        (a, b) => {
+            if (a.cost < b.cost) return -1;
+            if (b.cost < a.cost) return 1;
+            return 0;
+        }
+    ))
+    ViewContent(Content)
+
+});
+
+//filtra maximo a minimo 
+document.getElementById("sortDesc").addEventListener("click", () => {
+    console.log(Content.products.sort(
+        (a, b) =>{
+            if (a.cost > b.cost) return -1;
+            if (b.cost > a.cost) return 1;
+            return 0;
+        }
+    ))
+    ViewContent(Content)
+});
+
+//filtra por relevancia
+document.getElementById("sortByCount").addEventListener("click", () => {
+    console.log(Content.products.sort(
+        (a, b) =>{
+            if (a.soldCount > b.soldCount) return -1;
+            if (b.soldCount > a.soldCount) return 1;
+            return 0;
+        }
+    ))
+    ViewContent(Content)
+});
+
+//define precio minimo y maximo y vuelve a mostrar todo 
+document.getElementById("limpiarfiltro").addEventListener("click", function () {
+    document.getElementById("Minimo").value = "";
+    document.getElementById("Maximo").value = "";
+
+    Minimo = undefined;
+    Maximo = undefined;
+
+    ViewContent(contenido)
+});
+
+//precio maximo y minimo 
+document.getElementById("aplicarfiltro").addEventListener("click", () =>{
+    Minimo = document.getElementById("Minimo").value;
+    Maximo = document.getElementById("Maximo").value;
+
+    ViewContent(Content)
+
+});
 
 
-const NuestraUrlCambiante = localStorage.getItem("Fetchh");
-const ColeccionDeProductos = NuestraUrlCambiante;
+function ViewContent(Content) {
 
+    let htmlContentToAppend = ""
+5
+    for (let i = 0; i < Content.products.length; i++){
 
+        if (((Minimo == undefined) || (Minimo != undefined && Content.products[i].cost >= Minimo)) &&
+            ((Maximo == undefined) || (Maximo != undefined && Content.products[i].cost <= Maximo))){
 
-fetch(ColeccionDeProductos)
-.then(response => {return response.json()})
-.then(data=>{
-
-
-    let NombreDeLista="";
-
-    NombreDeLista +=`<h2>${data.catName}</h2>`
-
-
-    document.getElementById("TituloDelArticulo").innerHTML = NombreDeLista;
-
-    console.log(data.catName);
-
-   
-
-    for(let auto in data.products){
-        lista.push(data.products[auto]);
-
-    }
-
-
-    let htmlContentToAppend="";
-
-    for(let i=0; i<lista.length; i++){
-
-        let products = lista[i];
-        htmlContentToAppend += `
-
-       
-        <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="${products.image}" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">${products.name}</h4>
-                        <div>
-                            ${products.currency} ${products.cost}
-                            <br/>
-                            <small class="text-muted">
-                                ${products.soldCount} vendidos
-                            </small>
-                        </div>
+            htmlContentToAppend += `
+            <div onclick="setCatID(${Content.products[i].id})" class="list-group-item list-group-item-action cursor-active">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="${Content.products[i].image}" class="img-thumbnail">
                     </div>
-
-                    ${products.description}
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">${Content.products[i].name} - ${Content.products[i].currency} ${Content.products[i].cost} </h4>
+                            <small class="text-muted">${Content.products[i].soldCount} Vendidos</small> 
+                        </div>
+                        <p class="mb-1">${Content.products[i].description}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        `;
-
-        document.getElementById('prod-list-container').innerHTML = htmlContentToAppend;
+            `
+        }
     }
-})
+    document.getElementById("informacion").innerHTML = htmlContentToAppend;
+    TituloDelArticulo2 = `<h2 class="centrartexto">Productos</h2>
+        <p class="centrartexto">Verás aqui todos los productos de la categoria<strong> ${Content.catName}</strong></p>`
+    document.getElementById("TituloDelArticulo").innerHTML = TituloDelArticulo2
+}
