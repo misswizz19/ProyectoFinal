@@ -1,34 +1,34 @@
-let Content;
-let htmlContentToAppend = "";
-let Minimo = undefined;
-let Maximo = undefined;
+let Content;    
+let htmlContentToAppend = "";  
+let Minimo = undefined;  
+let Maximo = undefined;    
 
-//agrege let = Content para poder filtrar el resultado)
-function traer() {
+        
+function traer() {    
     fetch(url)
-        .then(response => response.json())
-        .then(data => { Content = data; return data })
-        .then(data => ViewContent(Content))
-        .catch(error => console.log(error))
+        .then(response => response.json())  
+        .then(data => { Content = data; return data })  
+        .then(data => ViewContent(Content))  
+        .catch(error => console.log(error)) 
 }
-traer();
+traer();      
 
-//filtra minimo a maximo 
-document.getElementById("sortAsc").addEventListener("click", () => {
-    console.log(Content.products.sort(
-        (a, b) => {
-            if (a.cost < b.cost) return -1;
-            if (b.cost < a.cost) return 1;
-            return 0;
+
+document.getElementById("sortAsc").addEventListener("click", () => {     
+    console.log(Content.products.sort(  
+        (a, b) => {  
+            if (a.cost < b.cost) return -1;  
+            if (b.cost < a.cost) return 1; 
+            return 0;  
         }
     ))
-    ViewContent(Content)
+    ViewContent(Content)  
 
 });
 
-//filtra maximo a minimo 
-document.getElementById("sortDesc").addEventListener("click", () => {
-    console.log(Content.products.sort(
+
+document.getElementById("sortDesc").addEventListener("click", () => {  
+    console.log(Content.products.sort(  
         (a, b) =>{
             if (a.cost > b.cost) return -1;
             if (b.cost > a.cost) return 1;
@@ -38,8 +38,8 @@ document.getElementById("sortDesc").addEventListener("click", () => {
     ViewContent(Content)
 });
 
-//filtra por relevancia
-document.getElementById("sortByCount").addEventListener("click", () => {
+
+document.getElementById("sortByCount").addEventListener("click", () => {  
     console.log(Content.products.sort(
         (a, b) =>{
             if (a.soldCount > b.soldCount) return -1;
@@ -50,37 +50,38 @@ document.getElementById("sortByCount").addEventListener("click", () => {
     ViewContent(Content)
 });
 
-//define precio minimo y maximo y vuelve a mostrar todo 
-document.getElementById("limpiarfiltro").addEventListener("click", function () {
-    document.getElementById("Minimo").value = "";
-    document.getElementById("Maximo").value = "";
 
-    Minimo = undefined;
-    Maximo = undefined;
+document.getElementById("limpiarfiltro").addEventListener("click", function () {  
+    document.getElementById("Minimo").value = "";  
+    document.getElementById("Maximo").value = "";  
 
-    ViewContent(contenido)
-});
+    Minimo = undefined;  
+    Maximo = undefined;       
 
-//precio maximo y minimo 
-document.getElementById("aplicarfiltro").addEventListener("click", () =>{
-    Minimo = document.getElementById("Minimo").value;
-    Maximo = document.getElementById("Maximo").value;
-
-    ViewContent(Content)
-
+    ViewContent(Content)  
 });
 
 
-function ViewContent(Content) {
+document.getElementById("aplicarfiltro").addEventListener("click", () =>{  
+    Minimo = document.getElementById("Minimo").value;  
+    Maximo = document.getElementById("Maximo").value;  
 
-    let htmlContentToAppend = ""
+    ViewContent(Content)  
+
+});
+
+
+function ViewContent(Content) {  
+
+    let htmlContentToAppend = ""  
 5
-    for (let i = 0; i < Content.products.length; i++){
+    for (let i = 0; i < Content.products.length; i++){  
 
-        if (((Minimo == undefined) || (Minimo != undefined && Content.products[i].cost >= Minimo)) &&
-            ((Maximo == undefined) || (Maximo != undefined && Content.products[i].cost <= Maximo))){
+        if (((Minimo == undefined) || (Minimo != undefined && Content.products[i].cost >= Minimo)) &&  
+            ((Maximo == undefined) || (Maximo != undefined && Content.products[i].cost <= Maximo))){    
 
-            htmlContentToAppend += `
+            htmlContentToAppend +=   
+                `
             <div onclick="setCatID(${Content.products[i].id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
@@ -98,8 +99,9 @@ function ViewContent(Content) {
             `
         }
     }
-    document.getElementById("informacion").innerHTML = htmlContentToAppend;
-    TituloDelArticulo2 = `<h2 class="centrartexto">Productos</h2>
-        <p class="centrartexto">Verás aqui todos los productos de la categoria<strong> ${Content.catName}</strong></p>`
-    document.getElementById("TituloDelArticulo").innerHTML = TituloDelArticulo2
+    document.getElementById("informacion").innerHTML = htmlContentToAppend; 
+    TituloDelArticulo2 = `<h2 class="centrartexto">Productos</h2>   
+        <p class="centrartexto">Verás aqui todos los productos de la categoria<strong> ${Content.catName}</strong></p>  ` 
+    document.getElementById("TituloDelArticulo").innerHTML = TituloDelArticulo2  
+
 }

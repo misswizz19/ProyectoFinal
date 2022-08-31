@@ -19,13 +19,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     
-  
-function Logeando() {
-    if (localStorage.getItem(`login`) == null ) { //si el usuario no esta logeado
-        window.location.href = "login.html"  //redirecciona a login.html
-    }else{ //si el usuario esta logeado
-        document.getElementById("Usuario2").innerHTML = localStorage.getItem(`Usuario`) //muestra el usuario logeado en el header
+ 
+   
+function Logeando() {      
+    if (localStorage.getItem(`login`) == null ) {  
+        window.location.href = "login.html"  
+    }else{ 
+        document.getElementById("Usuario2").innerHTML = localStorage.getItem(`Usuario`) 
+        
        
     }
 };
-Logeando();4 //llama a la funcion Logeando()
+Logeando();4 

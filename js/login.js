@@ -42,15 +42,16 @@ function showError(message) {
 */
 
 
+window.onload=function(){  
+const Usuario = document.getElementById("email")    
+const Password = document.getElementById("contraseña")  
+const Butt = document.getElementById("button") 
 
-const Usuario = document.getElementById("email")  //email    
-const Password = document.getElementById("contraseña") //contraseña  
-const Butt = document.getElementById("button") //boton de ingresar 
-//recopila la informacion del usuario y la guarda para luego poderla usar en index.js
-window.onload=function(){  //cuando se cargue la pagina
-Butt.addEventListener("click", (e) => {  //cuando se presiona el boton de ingresar 
-    localStorage.setItem(`Usuario`, Usuario.value); //guarda el email del usuario en local storage
-    localStorage.setItem(`Password`, Password.value); //guarda la contraseña del usuario en local storage
-    localStorage.setItem(`login`, true); //si el usuario esta logeado;
+
+      
+Butt.addEventListener("click", (e) => {  
+    localStorage.setItem(`Usuario`, Usuario.value);
+    localStorage.setItem(`Password`, Password.value); 
+    localStorage.setItem(`login`, true); 
 }) 
 }

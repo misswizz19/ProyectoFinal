@@ -8,13 +8,13 @@ const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
 
-/*Aquí obtenemos el id de categoría y se guarda en local storage la url de los items */
-const DataId = localStorage.getItem("catID");
 
-/*Se construye la URL para listar los productos y se guarda en el local storage*/
-const url = PRODUCTS_URL + DataId + EXT_TYPE;
-console.log(url);
-localStorage.setItem("Fetchh", url);
+const DataId = localStorage.getItem("catID");  
+
+
+const url = PRODUCTS_URL + DataId + EXT_TYPE;   
+console.log(url); 
+localStorage.setItem("Fetchh", url);            
 
 
 let showSpinner = function(){
