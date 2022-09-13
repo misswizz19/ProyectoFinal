@@ -3,15 +3,22 @@ let htmlContentToAppend = "";
 let Minimo = undefined;  
 let Maximo = undefined;    
 
+const urls = "https://japceibal.github.io/emercado-api/cats_products/" + localStorage.getItem(`catID`) + ".json"                
+console.log(urls)                  
+
+function setCatID(id) {                    
+    localStorage.setItem("catIDobject", id);   
+    window.location = "product-info.html"  
+}       
         
-function traer() {    
+function traer() {        
     fetch(url)
         .then(response => response.json())  
         .then(data => { Content = data; return data })  
         .then(data => ViewContent(Content))  
         .catch(error => console.log(error)) 
 }
-traer();      
+traer();        
 
 
 document.getElementById("sortAsc").addEventListener("click", () => {     
@@ -22,7 +29,7 @@ document.getElementById("sortAsc").addEventListener("click", () => {
             return 0;  
         }
     ))
-    ViewContent(Content)  
+    ViewContent(Content)                          
 
 });
 
