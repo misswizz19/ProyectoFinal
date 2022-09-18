@@ -1,41 +1,41 @@
-const url_product = "https://japceibal.github.io/emercado-api/products/" + localStorage.getItem(`catIDobject`) + ".json";  //url del producto  
+const url_product = "https://japceibal.github.io/emercado-api/products/" + localStorage.getItem(`catIDobject`) + ".json";  
 console.log(url_product)       
-const url_coment = "https://japceibal.github.io/emercado-api/products_comments/" + localStorage.getItem(`catIDobject`) + ".json"; //url de los comentarios
-console.log(url_coment)
+const url_coment = "https://japceibal.github.io/emercado-api/products_comments/" + localStorage.getItem(`catIDobject`) + ".json"; 
+console.log(url_coment) 
 
-let product;  //variable global      
+let product;        
 
-let coment;  //variable global       
+let coment;        
 
 
 
-function traer_producto() {  //funcion para traer el producto de la url del producto  
-  fetch(url_product)  //trae la url del producto
-    .then(response => response.json())  //convierte la url en json
-    .then(data => { console.log(data); return data })  //imprime el json
-    .then(data => { product = data; return data })  //guarda el json en la variable global product
-    .then(product => { console.log("product dentro de fetch", product); return product })  //imprime la variable global product
-    .then(product => informacion_del_product(product))  //llama a la funcion informacion_del_product  
-    .catch(error => console.log(error))  //imprime el error
+function traer_producto() {    
+  fetch(url_product)
+    .then(response => response.json())  
+    .then(data => { console.log(data); return data })  
+    .then(data => { product = data; return data })  
+    .then(product => { console.log("product dentro de fetch", product); return product })  
+    .then(product => informacion_del_product(product))  
+    .catch(error => console.log(error))  
 }
-traer_producto();  //llama a la funcion traer_producto
+traer_producto();  
 
-function traer_comentario() {  //funcion para traer los comentarios de la url de los comentarios
-  fetch(url_coment)  //trae la url de los comentarios
-    .then(response => response.json())  //convierte la url en json
-    .then(data => { console.log(data); return data })  //imprime el json
-    .then(data => { coment = data; return data })  //guarda el json en la variable global coment
-    .then(coment => imprimir_comentarios(coment))  //llama a la funcion imprimir_comentarios
-    .catch(error => console.log(error))  //imprime el error
+function traer_comentario() { 
+  fetch(url_coment)  
+    .then(response => response.json())  
+    .then(data => { console.log(data); return data }) 
+    .then(data => { coment = data; return data })  
+    .then(coment => imprimir_comentarios(coment))  
+    .catch(error => console.log(error))  
 };
-traer_comentario();  //llama a la funcion traer_comentario
+traer_comentario();  
 
 
-function informacion_del_product(product) {  //funcion para imprimir la informacion del producto
-  console.log("dentro", product)  //imprime la variable global product  
-  let data_productos = ""  //variable para guardar la informacion del producto  
+function informacion_del_product(product) {  
+  console.log("dentro", product)    
+  let data_productos = ""    
 
-  data_productos +=   //guarda la informacion del producto en la variable data_productos
+  data_productos +=   
   `    
         <div>
           <h2>${product.name}</h2>
@@ -49,17 +49,17 @@ function informacion_del_product(product) {  //funcion para imprimir la informac
           <p> <img src="${product.images[0]}" height = "196"> <img src="${product.images[1]}" height = "196"> <img src="${product.images[2]}" height = "196"> <img src="${product.images[3]}" height = "196"></p>
         </div>
           `
-  document.getElementById("product-i").innerHTML = data_productos;  //imprime la informacion del producto en el html    
+  document.getElementById("product-i").innerHTML = data_productos;    
 }
 
-function imprimir_comentarios() {  //funcion para imprimir los comentarios  
-  let data_coment = ""  //variable para guardar los comentarios
+function imprimir_comentarios() {   
+  let data_coment = ""  
 
-  for (let i = 0; i < coment.length; i++) {  //recorre el json de los comentarios
-    let star = coment[i].score  //variable para guardar la cantidad de estrellas
-    console.log("stars", star)  //imprime la cantidad de estrellas
-    if (star == 0) {  //si la cantidad de estrellas es 0
-      data_coment +=   //guarda los comentarios en la variable data_coment
+  for (let i = 0; i < coment.length; i++) {  
+    let star = coment[i].score  
+    console.log("stars", star)  
+    if (star == 0) {  
+      data_coment +=   
       `
 <div class="list-group-item">
 <p><strong>${coment[i].user}</strong> - ${coment[i].dateTime} - ${coment[i].score} 
@@ -71,8 +71,8 @@ function imprimir_comentarios() {  //funcion para imprimir los comentarios
            <p>${coment[i].description}</P>
           </div>
             `
-    } else if (star == 1) {  //si la cantidad de estrellas es 1
-      data_coment +=   //guarda los comentarios en la variable data_coment
+    } else if (star == 1) { 
+      data_coment +=   
       `
 <div class="list-group-item">
 <p><strong>${coment[i].user}</strong> - ${coment[i].dateTime} - ${coment[i].score} 
@@ -84,8 +84,8 @@ function imprimir_comentarios() {  //funcion para imprimir los comentarios
    <p>${coment[i].description}</P>
   </div>
     `
-    } else if (star == 2) {  //si la cantidad de estrellas es 2
-      data_coment +=   //guarda los comentarios en la variable data_coment
+    } else if (star == 2) {  
+      data_coment +=   
       `
 <div class="list-group-item">
 <p><strong>${coment[i].user}</strong> - ${coment[i].dateTime} - ${coment[i].score} 
@@ -137,5 +137,5 @@ function imprimir_comentarios() {  //funcion para imprimir los comentarios
 
   }
 
-  document.getElementById("comenta").innerHTML = data_coment;  //imprime los comentarios en el html
+  document.getElementById("comenta").innerHTML = data_coment;    
 }

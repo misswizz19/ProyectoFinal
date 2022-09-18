@@ -2,16 +2,16 @@ let Content;
 let htmlContentToAppend = "";  
 let Minimo = undefined;  
 let Maximo = undefined;    
-
-const urls = "https://japceibal.github.io/emercado-api/cats_products/" + localStorage.getItem(`catID`) + ".json"                
-console.log(urls)                  
-
-function setCatID(id) {                    
-    localStorage.setItem("catIDobject", id);   
-    window.location = "product-info.html"  
-}       
         
-function traer() {        
+const urls = "https://japceibal.github.io/emercado-api/cats_products/" + localStorage.getItem(`catID`) + ".json"  
+console.log(urls)                              
+
+function setCatID(id) {                                
+    localStorage.setItem("catIDobject", id);         
+    window.location = "product-info.html"      
+}  
+        
+function traer() {          
     fetch(url)
         .then(response => response.json())  
         .then(data => { Content = data; return data })  
