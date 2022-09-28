@@ -6,6 +6,14 @@ let Maximo = undefined;
 const urls = "https://japceibal.github.io/emercado-api/cats_products/" + localStorage.getItem(`catID`) + ".json"  
 console.log(urls)                              
 
+const DataId = localStorage.getItem("catID");  
+
+
+const url = PRODUCTS_URL + DataId + EXT_TYPE;   
+console.log(url); 
+localStorage.setItem("Fetchh", url);  
+
+
 function setCatID(id) {                                
     localStorage.setItem("catIDobject", id);         
     window.location = "product-info.html"      

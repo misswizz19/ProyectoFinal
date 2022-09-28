@@ -188,3 +188,28 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.Desp {
+  position: absolute;
+  background: rgb(255, 255, 255);
+  display: none;
+  list-style: none;
+}
+
+.Desp li a {
+  display: block;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: 'Raleway', serif !important;
+  text-decoration: none;
+  
+}
+
+.navbar-nav li:hover .Desp {
+  display: block;
+}
+
+#RelaPro1 {
+  display: flex;
+  justify-content: flex-start;
+}

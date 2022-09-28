@@ -7,6 +7,14 @@ let product;
 
 let coment;        
 
+//semana4 recarga product-info y carga el prducto con una nueva id de productos recomendados
+
+function productosrelacionados(id) {
+  localStorage.setItem("catIDobject", id);
+  window.location = "product-info.html"
+}
+
+
 
 
 function traer_producto() {    
@@ -139,3 +147,27 @@ function imprimir_comentarios() {
 
   document.getElementById("comenta").innerHTML = data_coment;    
 }
+
+
+//productos relacionados semana 4
+function productos_relacionados(product) { //funcion para mostrar los productos relacionados
+  console.log("dentro2", product)  //muestra en consola los productos relacionados
+  let productosRelacionados = ""  //variable para mostrar los productos relacionados
+  for (let i = 0; i < product.relatedProducts.length; i++) {  //for para mostrar los productos relacionados en el html
+    productosRelacionados +=   `  
+    <div onclick="productosrelacionados(${product.relatedProducts[i].id})" class="cursor-active espaciado">
+        <div>
+            <div align="center">
+                <img src="${product.relatedProducts[i].image}"class="img-thumbnail" style= width:300px height:300px>
+            </div>
+            <div>
+                <p class="mb-1, Alinear_Felx">${product.relatedProducts[i].name}</p>
+            </div>
+        </div>
+    </div>
+    ` //se muestra el nombre y la imagen de los productos relacionados en el html  
+
+  }  
+  document.getElementById("RelaPro1").innerHTML = productosRelacionados;  //se muestra en el html los productos relacionados
+
+} //fin de la funcion productos relacionados

@@ -9,12 +9,7 @@ const EXT_TYPE = ".json";
 
 
 
-const DataId = localStorage.getItem("catID");  
-
-
-const url = PRODUCTS_URL + DataId + EXT_TYPE;   
-console.log(url); 
-localStorage.setItem("Fetchh", url);            
+          
 
 
 let showSpinner = function(){
