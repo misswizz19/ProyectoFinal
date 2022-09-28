@@ -48,14 +48,14 @@ const Password = document.getElementById("contraseña")
 const Butt = document.getElementById("button") 
 
 //cierra la sesion
-function CerrarLaSesion(){
-    localStorage.removeItem('Usuario');
-    localStorage.removeItem('Password');
-    localStorage.removeItem('login')
+function CerrarLaSesion(){  //funcion para cerrar la sesion 
+    localStorage.removeItem('Usuario'); //se elimina el usuario del local storage
+    localStorage.removeItem('Password');  //se elimina la contraseña del local storage
+    localStorage.removeItem('login') //se elimina el login del local storage
 }
-CerrarLaSesion()
+CerrarLaSesion() //se llama a la funcion para cerrar la sesion
       
-Butt.addEventListener("click", (e) => {  
+Butt.addEventListener("click", (e) => {    
     localStorage.setItem(`Usuario`, Usuario.value);
     localStorage.setItem(`Password`, Password.value); 
     localStorage.setItem(`login`, true); 

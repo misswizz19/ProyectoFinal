@@ -3,15 +3,15 @@ console.log(url_product)
 const url_coment = "https://japceibal.github.io/emercado-api/products_comments/" + localStorage.getItem(`catIDobject`) + ".json"; 
 console.log(url_coment) 
 
-let product;        
+let product;       
 
 let coment;        
 
 //semana4 recarga product-info y carga el prducto con una nueva id de productos recomendados
 
-function productosrelacionados(id) {
-  localStorage.setItem("catIDobject", id);
-  window.location = "product-info.html"
+function productosrelacionados(id) {  //funcion para mostrar los productos relacionados
+  localStorage.setItem("catIDobject", id);  //se guarda en el local storage el id del producto seleccionado
+  window.location = "product-info.html"  //se redirecciona a la pagina product-info.html
 }
 
 
@@ -23,10 +23,12 @@ function traer_producto() {
     .then(data => { console.log(data); return data })  
     .then(data => { product = data; return data })  
     .then(product => { console.log("product dentro de fetch", product); return product })  
+    .then(product => productos_relacionados(product))   // se llama a la funcion productos relacionados para mostrar los productos relacionados 
     .then(product => informacion_del_product(product))  
     .catch(error => console.log(error))  
 }
-traer_producto();  
+
+traer_producto(); 
 
 function traer_comentario() { 
   fetch(url_coment)  
@@ -57,7 +59,8 @@ function informacion_del_product(product) {
           <p> <img src="${product.images[0]}" height = "196"> <img src="${product.images[1]}" height = "196"> <img src="${product.images[2]}" height = "196"> <img src="${product.images[3]}" height = "196"></p>
         </div>
           `
-  document.getElementById("product-i").innerHTML = data_productos;    
+  document.getElementById("product-i").innerHTML = data_productos;  
+  return product;  
 }
 
 function imprimir_comentarios() {   
@@ -153,7 +156,7 @@ function imprimir_comentarios() {
 function productos_relacionados(product) { //funcion para mostrar los productos relacionados
   console.log("dentro2", product)  //muestra en consola los productos relacionados
   let productosRelacionados = ""  //variable para mostrar los productos relacionados
-  for (let i = 0; i < product.relatedProducts.length; i++) {  //for para mostrar los productos relacionados en el html
+  for  (let i = 0; i < product.relatedProducts.length; i++) {  //for para mostrar los productos relacionados en el html
     productosRelacionados +=   `  
     <div onclick="productosrelacionados(${product.relatedProducts[i].id})" class="cursor-active espaciado">
         <div>
@@ -168,6 +171,8 @@ function productos_relacionados(product) { //funcion para mostrar los productos 
     ` //se muestra el nombre y la imagen de los productos relacionados en el html  
 
   }  
-  document.getElementById("RelaPro1").innerHTML = productosRelacionados;  //se muestra en el html los productos relacionados
 
+
+
+  document.getElementById("relatedProducts").innerHTML = productosRelacionados;  //se muestra en el html los productos relacionados
 } //fin de la funcion productos relacionados
