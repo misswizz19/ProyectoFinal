@@ -7,11 +7,10 @@ let product;
 
 let coment;        
 
-//semana4 recarga product-info y carga el prducto con una nueva id de productos recomendados
 
-function productosrelacionados(id) {  //funcion para mostrar los productos relacionados
-  localStorage.setItem("catIDobject", id);  //se guarda en el local storage el id del producto seleccionado
-  window.location = "product-info.html"  //se redirecciona a la pagina product-info.html
+function prodrela(id) {  
+  localStorage.setItem("catIDobject", id);  
+  window.location = "product-info.html"  
 }
 
 
@@ -23,7 +22,7 @@ function traer_producto() {
     .then(data => { console.log(data); return data })  
     .then(data => { product = data; return data })  
     .then(product => { console.log("product dentro de fetch", product); return product })  
-    .then(product => productos_relacionados(product))   // se llama a la funcion productos relacionados para mostrar los productos relacionados 
+    .then(product => PrRela(product))    
     .then(product => informacion_del_product(product))  
     .catch(error => console.log(error))  
 }
@@ -152,13 +151,12 @@ function imprimir_comentarios() {
 }
 
 
-//productos relacionados semana 4
-function productos_relacionados(product) { //funcion para mostrar los productos relacionados
-  console.log("dentro2", product)  //muestra en consola los productos relacionados
-  let productosRelacionados = ""  //variable para mostrar los productos relacionados
-  for  (let i = 0; i < product.relatedProducts.length; i++) {  //for para mostrar los productos relacionados en el html
-    productosRelacionados +=   `  
-    <div onclick="productosrelacionados(${product.relatedProducts[i].id})" class="cursor-active espaciado">
+function PrRela(product) { 
+  console.log("dentro2", product)  
+  let ProductRelat = ""  
+  for  (let i = 0; i < product.relatedProducts.length; i++) {  
+    ProductRelat +=   `  
+    <div onclick="prodrela(${product.relatedProducts[i].id})" class="cursor-active espaciado">
         <div>
             <div align="center">
                 <img src="${product.relatedProducts[i].image}"class="img-thumbnail" style= width:300px height:300px>
@@ -168,11 +166,11 @@ function productos_relacionados(product) { //funcion para mostrar los productos 
             </div>
         </div>
     </div>
-    ` //se muestra el nombre y la imagen de los productos relacionados en el html  
+    ` 
 
   }  
 
 
 
-  document.getElementById("relatedProducts").innerHTML = productosRelacionados;  //se muestra en el html los productos relacionados
-} //fin de la funcion productos relacionados
+  document.getElementById("relatedProducts").innerHTML = ProductRelat;  
+} 
