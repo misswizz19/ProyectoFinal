@@ -22,8 +22,8 @@ function traer_producto() {
     .then(data => { console.log(data); return data })  
     .then(data => { product = data; return data })  
     .then(product => { console.log("product dentro de fetch", product); return product })  
-    .then(product => PrRela(product))    
-    .then(product => informacion_del_product(product))  
+    .then(product => informacion_del_product(product)) 
+    .then(product => PrRela(product)) 
     .catch(error => console.log(error))  
 }
 
@@ -174,3 +174,5 @@ function PrRela(product) {
 
   document.getElementById("relatedProducts").innerHTML = ProductRelat;  
 } 
+
+
