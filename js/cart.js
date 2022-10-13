@@ -1,4 +1,4 @@
-const url_carritoo = "https://japceibal.github.io/emercado-api/user_cart/" + localStorage.getItem(`usuario`) + ".json"
+const url_carritoo = "https://japceibal.github.io/emercado-api/user_cart/" + localStorage.getItem(`Usuario`) + ".json"
 console.log(url_carritoo)
 let carro
 
@@ -20,7 +20,7 @@ function carritos_print() {
     let data_carro = ""
 
     for (let i = 0; i < carro.articles.length; i++) {
-        data_carro += `<img class="imagen_carrito" src="${carro.articles[i].image}"><p>${carro.articles[i].name}</p><p>USD ${carro.articles[i].unitCost}</p> <div><input type="number" name="cantidad" class="form-control cantidad_box" id="${i}" value="1"
+        data_carro += `<img class="IMG_CARRO" src="${carro.articles[i].image}"><p>${carro.articles[i].name}</p><p>USD ${carro.articles[i].unitCost}</p> <div><input type="number" name="Cant" class="form-control cantCaja" id="${i}" value="1"
         oninput="cant_cuad()"></div>`
     }
     document.getElementById("carritoProduct").innerHTML = data_carro;
@@ -43,7 +43,7 @@ function cant_cuad() {
         subTotals += document.getElementById([i]).value * carro.articles[i].unitCost
         subTotals = "USD" + subTotals 
       }else{
-        subTotals +=  "<p>La Cantidad Debe</p> <p>Ser Superior A 1</p>"
+        subTotals +=  "<p>La cantidad debe</p> <p>ser superior a. 1</p>"
     }}
   
     carrito_subtot(subTotals)

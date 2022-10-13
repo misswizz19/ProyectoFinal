@@ -156,7 +156,7 @@ function PrRela(product) {
   let ProductRelat = ""  
   for  (let i = 0; i < product.relatedProducts.length; i++) {  
     ProductRelat +=   `  
-    <div onclick="prodrela(${product.relatedProducts[i].id})" class="cursor-active espaciado">
+    <div onclick="prodrela(${product.relatedProducts[i].id})" class="cursor-active Espacio">
         <div>
             <div align="center">
                 <img src="${product.relatedProducts[i].image}"class="img-thumbnail" style= width:300px height:300px>

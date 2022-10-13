@@ -243,3 +243,17 @@ a.custom-card:hover {
   width: 710px;
   margin-right: 7px;
 }
+
+.IMG_CARRO {
+  height: 50px;
+  margin-left: 25px;
+}
+
+.cantCaja {
+  width: 60px;
+  height: 40px;
+  margin-left: 20%;
+}
+.unEspacio{
+  margin: 2px
+}
